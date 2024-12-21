@@ -1,30 +1,24 @@
-# HCUKE
-## ranker.py参数
-sim_methods['d-s'] = 'cos'
-sim_methods['s-c'] = 'cos'
-sim_methods['c-c'] = 'cos'
+This is code for KBS paper: [HCUKE: A Hierarchical Context-aware approach for Unsupervised Keyphrase Extraction](https://www.sciencedirect.com/science/article/abs/pii/S0950705124011456).
 
-doc_type = 'doc'
-poolings['doc_pooling'] = 'max' 
-poolings['sent_pooling'] = 'max'
-poolings['can_pooling'] = 'max'
-
-posi_type = '1'     
-len_type = '0'
+## Requirments
+- transformers==3.0.2
+- nltk
+- pytorch (conda install pytorch==1.7.1 cudatoolkit=11.0 -c pytorch )
+- tqdm
 
 # RUN
-- Step1: 生成文档嵌入(get_doc_embs.py)，每个数据集1个
-  - 运行：get_doc_embs.py Inspec
-  - 结果：test.doclevel.embeddings.bert-base-uncased.pkl
+- Step1: Generate document embedding
+  - Run: python get_doc_embs.py Inspec
+  - Result: test.doclevel.embeddings.bert-base-uncased.pkl
 
-- Step2: 抽取候选及其表示(get_sent_ckp_embs.py)，每个数据集2个
-  - 运行：get_sent_ckp_embs.py Inspec
-    - T,A拼接: D一次抽; 按句抽. 另: T仅2种池化表示
-        结果：test.alllevel.feats.bert-base-uncased.pkl
+- Step2: Extract candidates and their representations
+  - Run: python get_sent_ckp_embs.py Inspec
+  - Result: test.alllevel.features.bert-base-uncased.pkl
 
-- Step 3: 准备模型计算所需的数据 (build_data.py)
-  - 运行: build_data.py Inspec max 0
-  - 结果：
+- Step 3: Prepare data for model calculation
+  - Run: python build_data.py Inspec max 0
+  - Result: data.Inspec.bert-base-uncased.max.pkl
   
-- Step 4: 排名 (ranker.py) 
-  - 运行: ranker.py Inspec mean cls dot
+- Step 4: Ranking (ranker.py) 
+  - Run: python ranker.py
+  - DUC2001(F1@5,F1@10,F1@15) Inspec(F1@5,F1@10,F1@15) SemEval2010(F1@5,F1@10,F1@15) 
