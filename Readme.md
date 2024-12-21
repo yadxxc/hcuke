@@ -1,6 +1,6 @@
 This is code for KBS paper: [HCUKE: A Hierarchical Context-aware approach for Unsupervised Keyphrase Extraction](https://www.sciencedirect.com/science/article/abs/pii/S0950705124011456).
 
-Our implementation draws on the source code from [JointGL](https://github.com/xnliang98/uke_ccrank). The preprocessed datasets used for the evaluation also comes from here.
+The preprocessed datasets used for the evaluation also comes from [JointGL](https://github.com/xnliang98/uke_ccrank)..
 
 # Citation
 If you use this code, please cite our paper:
